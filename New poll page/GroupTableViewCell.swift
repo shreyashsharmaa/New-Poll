@@ -65,12 +65,9 @@ class GroupTableViewCell: UITableViewCell {
         studentView.addSubview(studentLabel)
         studentLabel.centerXAnchor.constraint(equalTo: studentView.centerXAnchor).isActive = true
         studentLabel.centerYAnchor.constraint(equalTo: studentView.centerYAnchor).isActive = true
-        
-        
-        
-        
-        studentView.addSubview(studentNameLabel)
-        studentNameLabel.leftAnchor.constraint(equalTo: leftAnchor , constant: 108).isActive = true
+
+        addSubview(studentNameLabel)
+        studentNameLabel.leftAnchor.constraint(equalTo: studentView.rightAnchor , constant: 15).isActive = true
         studentNameLabel.topAnchor.constraint(equalTo: topAnchor, constant:14 ).isActive = true
         studentNameLabel.sizeToFit()
         
