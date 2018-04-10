@@ -52,7 +52,7 @@ class ViewController: UIViewController ,UITableViewDelegate, UITableViewDataSour
             GroupTableViewCell
         {
             cell.contentView.backgroundColor = .white
-            cell.heightAnchor.constraint(equalToConstant: 100).isActive = true
+            cell.heightAnchor.constraint(equalToConstant: 60).isActive = true
             return cell
         }
         else {
@@ -66,9 +66,9 @@ class ViewController: UIViewController ,UITableViewDelegate, UITableViewDataSour
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.layer.borderWidth = 1.5
+        tableView.layer.borderWidth = 0.75
         tableView.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        tableView.layer.cornerRadius = 10.0
+        tableView.layer.cornerRadius = 14.0
         tableView.separatorStyle = .none
 
         return tableView
@@ -119,8 +119,7 @@ class ViewController: UIViewController ,UITableViewDelegate, UITableViewDataSour
         addButton.translatesAutoresizingMaskIntoConstraints = false
         addButton.contentMode = .scaleAspectFit
         addButton.setImage(#imageLiteral(resourceName: "plusButton"), for: .normal)
-        
-        
+        addButton.addTarget(self, action: #selector(ViewController.addChoiceButtonPressed(sender:) ) , for: .touchUpInside )
         return addButton
     }()
     
@@ -167,7 +166,22 @@ class ViewController: UIViewController ,UITableViewDelegate, UITableViewDataSour
         
         return dateAndTimeLabel
     }()
+
     
+    lazy var sendButton : UIButton =  {
+       let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Send", for: .normal)
+        button.setTitleColor(.white , for: .normal)
+        button.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        button.layer.masksToBounds = false
+    
+        button.layer.cornerRadius = 8.0
+        button.frame = CGRect(x: 0, y: 0, width: 200, height:30)
+        return button
+    }()
+    
+    // let choiceStackView = UIStackView(arrangedSubviews: [])
     
 
     
@@ -190,23 +204,28 @@ class ViewController: UIViewController ,UITableViewDelegate, UITableViewDataSour
         nameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12).isActive = true
         nameTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        //MARK : Choice text fields
-        //1
-        view.addSubview(choiceTextField)
         
+        
+        
+        
+        
+        //MARK : Choice text fields
+    
+        view.addSubview(choiceTextField)
+
         choiceTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
         choiceTextField.widthAnchor.constraint(equalToConstant:120).isActive = true
         choiceTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor , constant: 14).isActive = true
         choiceTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor , constant: 20).isActive = true
         //2
-        
+
         view.addSubview(choiceTextFieldSecond)
-        
+
         choiceTextFieldSecond.heightAnchor.constraint(equalToConstant: 40).isActive = true
         choiceTextFieldSecond.widthAnchor.constraint(equalToConstant:120).isActive = true
         choiceTextFieldSecond.leadingAnchor.constraint(equalTo: view.leadingAnchor , constant: 14).isActive = true
         choiceTextFieldSecond.topAnchor.constraint(equalTo: choiceTextField.bottomAnchor , constant: 1).isActive = true
-        
+
         
         //MARK:Add choice button
         view.addSubview(addChoiceButton)
@@ -214,60 +233,78 @@ class ViewController: UIViewController ,UITableViewDelegate, UITableViewDataSour
         addChoiceButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
         addChoiceButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:14).isActive = true
         addChoiceButton.topAnchor.constraint(equalTo: choiceTextFieldSecond.bottomAnchor, constant:10).isActive = true
-        
-        
+
+
         //MARK: Add choice label
-        
+
         view.addSubview(addChoiceTextLabel)
         addChoiceTextLabel.centerYAnchor.constraint(equalTo: addChoiceButton.centerYAnchor).isActive = true
         addChoiceTextLabel.leftAnchor.constraint(equalTo: addChoiceButton.rightAnchor, constant:3).isActive = true
         addChoiceTextLabel.heightAnchor.constraint(equalToConstant:10).isActive = true
         addChoiceTextLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
         addChoiceTextLabel.topAnchor.constraint(equalTo:choiceTextFieldSecond.bottomAnchor, constant:18).isActive = true
-        
+
         //MARK: Add Participant label
          view.addSubview(addParticipantlabel)
          addParticipantlabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 24).isActive = true
-         addParticipantlabel.topAnchor.constraint(equalTo: addChoiceTextLabel.bottomAnchor, constant: 60).isActive = true
+         addParticipantlabel.topAnchor.constraint(equalTo: addChoiceTextLabel.bottomAnchor, constant: 40).isActive = true
 
         addParticipantlabel.heightAnchor.constraint(equalToConstant: 12).isActive = true
         addParticipantlabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
 
-        
+
         //MARK:Add Poll ends Labe;
-        
+
         view.addSubview(pollEndLabel)
        pollEndLabel.centerYAnchor.constraint(equalTo: addChoiceTextLabel.centerYAnchor).isActive = true
        pollEndLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -100).isActive = true
-        
+
        pollEndLabel.heightAnchor.constraint(equalToConstant: 10).isActive = true
         pollEndLabel.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        
-        
+
+
         view.addSubview(pollEndDateAndTimeLabel)
 pollEndDateAndTimeLabel.centerYAnchor.constraint(equalTo: addChoiceTextLabel.centerYAnchor).isActive = true
 pollEndDateAndTimeLabel.leadingAnchor.constraint(equalTo: pollEndLabel.trailingAnchor).isActive = true
-        
+
         //MARK: Table view
-        
+
         view.addSubview(myTableView)
-        
+
    myTableView.topAnchor.constraint(equalTo: addParticipantlabel.bottomAnchor, constant: 10).isActive = true
-   myTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10).isActive = true
+   myTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -60).isActive = true
    myTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor , constant: 12).isActive = true
    myTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12).isActive = true
-    
+        
+        
+        
+        //MARK : send Button
+        
+        view.addSubview(sendButton)
+        sendButton.topAnchor.constraint(equalTo: myTableView.bottomAnchor, constant: 12).isActive = true
+        sendButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+      //  sendButton.widthAnchor.constraint(equalToConstant: 200)
+      
+        
+        
+        
+        
+        
+        
     
     }
     
+    @objc func addChoiceButtonPressed(sender:UIButton!)
+    {
+        
+    }
+    
+    
+   
     
     
     
     
     
-    
-    
-    
-    
-}
 
+}

@@ -35,10 +35,10 @@ class GroupTableViewCell: UITableViewCell {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.masksToBounds = true
-        view.textColor = .blue
+        view.textColor = .black
         view.text = "Shreyash Sharma"
         view.textAlignment = .left
-        view.font = UIFont(name: "HelveticaNeue", size: 18)
+        view.font = UIFont(name: "HelveticaNeue", size:14)
         return view
     }()
 
@@ -68,6 +68,7 @@ class GroupTableViewCell: UITableViewCell {
 
         addSubview(studentNameLabel)
         studentNameLabel.leftAnchor.constraint(equalTo: studentView.rightAnchor , constant: 15).isActive = true
+        studentNameLabel.centerYAnchor.constraint(equalTo: studentView.centerYAnchor).isActive = true
         studentNameLabel.topAnchor.constraint(equalTo: topAnchor, constant:14 ).isActive = true
         studentNameLabel.sizeToFit()
         
