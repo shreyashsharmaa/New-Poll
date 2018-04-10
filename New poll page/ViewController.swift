@@ -68,7 +68,9 @@ class ViewController: UIViewController ,UITableViewDelegate, UITableViewDataSour
         tableView.dataSource = self
         tableView.layer.borderWidth = 1.5
         tableView.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        tableView.layer.cornerRadius = 4.0
+        tableView.layer.cornerRadius = 10.0
+        tableView.separatorStyle = .none
+
         return tableView
         
     }()
@@ -250,10 +252,10 @@ pollEndDateAndTimeLabel.leadingAnchor.constraint(equalTo: pollEndLabel.trailingA
         
         view.addSubview(myTableView)
         
-   myTableView.topAnchor.constraint(equalTo: addParticipantlabel.bottomAnchor)
-   myTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 100)
-   myTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor , constant: 12)
-   myTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12)
+   myTableView.topAnchor.constraint(equalTo: addParticipantlabel.bottomAnchor, constant: 10).isActive = true
+   myTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10).isActive = true
+   myTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor , constant: 12).isActive = true
+   myTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12).isActive = true
     
     
     }

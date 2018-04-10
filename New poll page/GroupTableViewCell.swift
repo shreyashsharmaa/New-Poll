@@ -41,14 +41,7 @@ class GroupTableViewCell: UITableViewCell {
         view.font = UIFont(name: "HelveticaNeue", size: 18)
         return view
     }()
-    
-    
-    
-    
-    
-    
-  
-    
+
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -65,10 +58,9 @@ class GroupTableViewCell: UITableViewCell {
         studentView.topAnchor.constraint(equalTo: topAnchor , constant: 10).isActive = true
         studentView.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
         
-        studentView.widthAnchor.constraint(equalToConstant: 75).isActive = true
-        studentView.heightAnchor.constraint(equalToConstant: 75).isActive = true
-        studentView.layer.cornerRadius = 75 / 2
-        
+        studentView.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        studentView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        studentView.layer.cornerRadius = 50 / 2
         
         studentView.addSubview(studentLabel)
         studentLabel.centerXAnchor.constraint(equalTo: studentView.centerXAnchor).isActive = true
